@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Unidade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Unidade</h1>
+
+        <form method="POST" class="form-card">
+            <label>Nome:</label>
+            <input type="text" name="nome_unidade" required>
+
+            <label>Sigla:</label>
+            <input type="text" name="sigla_unidade" required>
+
+            <button type="submit" class="btn">Salvar</button>
+            <a href="{{ url_for('index') }}" class="btn secondary">Voltar</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Unidades de Medida</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Unidades de Medida</h1>
+
+        <a href="{{ url_for('adicionar') }}" class="btn">+ Adicionar nova unidade</a>
+
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, msg in mensagens %}
+                <div class="alert {{ categoria }}">{{ msg }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Sigla</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for unidade in unidades %}
+                <tr>
+                    <td>{{ unidade.cod_unidade }}</td>
+                    <td>{{ unidade.nome_unidade }}</td>
+                    <td>{{ unidade.sigla_unidade }}</td>
+                    <td>
+                        <a href="{{ url_for('editar', cod_unidade=unidade.cod_unidade) }}" class="btn edit">Editar</a>
+                        <form action="{{ url_for('excluir', cod_unidade=unidade.cod_unidade) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn delete" onclick="return confirm('Excluir esta unidade?')">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
